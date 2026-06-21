@@ -1,0 +1,121 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Analytics Demo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>User Analytics Tracking Demo</h1>
+
+    <p>
+        Open Developer Tools → Network tab to observe requests.
+    </p>
+
+    <button id="buyBtn">Buy Now</button>
+    <button id="cartBtn">Add To Cart</button>
+    <button id="checkoutBtn">Checkout</button>
+
+    <div class="card">
+        <h3>Product Section</h3>
+        <p>
+            Click anywhere on this page to generate click events.
+        </p>
+    </div>
+
+</div>
+
+<script>
+
+    function getSessionId() {
+
+        let sessionId =
+            localStorage.getItem("session_id");
+
+        if (!sessionId) {
+
+            sessionId = crypto.randomUUID();
+
+            localStorage.setItem(
+                "session_id",
+                sessionId
+            );
+        }
+
+        return sessionId;
+    }
+
+    function sendEvent(eventData) {
+
+        fetch("http://localhost:5000/events", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(eventData)
+        })
+        .then(res => res.json())
+        .then(data => console.log("Sent:", data))
+        .catch(err => console.error(err));
+    }
+
+    // PAGE VIEW EVENT
+    window.addEventListener("load", () => {
+
+        sendEvent({
+            session_id: getSessionId(),
+            event_type: "page_view",
+            page_url: window.location.href,
+            timestamp: new Date().toISOString()
+        });
+
+    });
+
+    // CLICK EVENT
+    document.addEventListener("click", (e) => {
+
+        sendEvent({
+            session_id: getSessionId(),
+            event_type: "click",
+            page_url: window.location.href,
+            timestamp: new Date().toISOString(),
+            x: e.clientX,
+            y: e.clientY
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
+```
