@@ -25,14 +25,14 @@ Each event contains:
 
 ---
 ## ScreenShots 
-![Sessions Dashboard](screenshots/dashboard.png)
+![Sessions Dashboard](dashboard.png)
 Displays all tracked sessions along with total event counts and allows viewing the user activity timeline.
 
 ### Demo Page
-![Demo Page](screenshots/demo_page.png)
+![Demo Page](demo_page.png)
 
 ### Click Heatmap
-![Click Heatmap](screenshots/heatmap.png)
+![Click Heatmap](heatmap.png)
 Visualizes click positions collected for a specific page URL.
 
 ---
