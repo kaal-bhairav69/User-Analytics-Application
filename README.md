@@ -24,6 +24,18 @@ Each event contains:
 - Click Coordinates (x, y) for click events
 
 ---
+## ScreenShots 
+![Sessions Dashboard](screenshots/dashboard.png)
+Displays all tracked sessions along with total event counts and allows viewing the user activity timeline.
+
+### Demo Page
+![Demo Page](screenshots/demo_page.png)
+
+### Click Heatmap
+![Click Heatmap](screenshots/heatmap.png)
+Visualizes click positions collected for a specific page URL.
+
+---
 
 ### Backend APIs
 
@@ -264,4 +276,4 @@ Example Event Document:
 
 Nimit Garg
 
-Kyushu University
+IIT MANDI
